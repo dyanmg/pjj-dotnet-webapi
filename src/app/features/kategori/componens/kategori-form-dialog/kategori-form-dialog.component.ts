@@ -15,7 +15,7 @@ import { MatInputModule } from '@angular/material/input';
     MatDialogActions,
     MatDialogClose,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
 ],
   templateUrl: './kategori-form-dialog.component.html',
   styleUrl: './kategori-form-dialog.component.css',

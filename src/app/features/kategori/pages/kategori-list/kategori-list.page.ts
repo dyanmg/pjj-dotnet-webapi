@@ -31,18 +31,18 @@ export class KategoriListPage {
       });
   }
 
-  openFormDialog(item?: Kategori): void {
+  openFormDialog(item?: Kategori, isView?: boolean): void {
     this._dialog.open(KategoriFormDialogComponent, {
       bindings: [
-        inputBinding('data', () => item || { id: '', nama: ''}),
+        inputBinding('data', () => ({ id: item?.id, nama: item?.nama, isView: isView})),
         outputBinding('formData', (data: any) => {
-          this.handleFormSubmit(data, item?.id != null && item?.id !== '', item?.nama);
+          this.handleFormSubmit(data, item?.id != null && item?.id !== '', item?.nama, isView);
         })
       ]
     });
   }
 
-  private handleFormSubmit(data: any, isEdit: boolean, namaLama?: string): void {
+  private handleFormSubmit(data: any, isEdit: boolean, namaLama?: string, isView?: boolean): void {
     const payload: any = {
       // id: data.id != null || data.id !== '' ? data.id : null,
       nama: data.nama
