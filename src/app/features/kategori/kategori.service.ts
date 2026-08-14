@@ -22,10 +22,17 @@ export class KategoriService {
             );
     }
 
-    public updateKategori(id: string,data: any): Observable<Kategori> {
+    public updateKategori(id: string, data: any): Observable<Kategori> {
         return this._httpClient.put<Kategori>(`${this._baseUrl}/kategori/${id}`, data)
             .pipe(
                 map((response: any) => response.data as Kategori)
+            );
+    }
+
+    public deleteKategori(id: string): Observable<Kategori> {
+        return this._httpClient.delete<Kategori>(`${this._baseUrl}/kategori/${id}`)
+            .pipe(
+                map((response: any) => response?.data as Kategori)
             );
     }
 }

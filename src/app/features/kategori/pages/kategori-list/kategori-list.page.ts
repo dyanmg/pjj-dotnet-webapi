@@ -66,4 +66,14 @@ export class KategoriListPage {
       });
     }
   }
+
+  handleDeleteKategori(data: any) {
+    if (confirm('Apakah Anda yakin ingin menghapus kategori ini?')) {
+      this._kategoriService.deleteKategori(data.id)
+        .subscribe(() => {
+          alert(`Kategori ${data.nama} berhasil dihapus!`);
+          this.loadData();
+        });
+    }
+  }
 }
