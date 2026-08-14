@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Tambah Kategori</h2>
+<mat-dialog-content [formGroup]="form" class="flex flex-col">
+    <mat-form-field class="w-full">
+        <mat-label>ID</mat-label>
+        <input matInput formControlName="id" />
+    </mat-form-field>
+    <mat-form-field class="w-full">
+        <mat-label>Nama</mat-label>
+        <input matInput formControlName="nama" />
+    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button [mat-dialog-close]>Batal</button>
+    <button mat-button (click)="submit()">Simpan</button>
+</mat-dialog-actions>

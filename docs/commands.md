@@ -8,3 +8,7 @@ ng new pjj-dotnet-webapi
 ng generate component features/kategori/pages/kategori-list --type page --skip-tests
 ```
 
+### Menambah Service Kategori
+```
+ng generate service features/kategori/kategori --type service --skip-tests
+```

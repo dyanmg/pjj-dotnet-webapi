@@ -14,4 +14,11 @@ export class KategoriService {
                 map((response: any) => response.data as Kategori[])
             );
     }
+
+    public addKategori(data: any): Observable<Kategori> {
+        return this._httpClient.post<Kategori>(`${this._baseUrl}/kategori`, data)
+            .pipe(
+                map((response: any) => response.data as Kategori)
+            );
+    }
 }
