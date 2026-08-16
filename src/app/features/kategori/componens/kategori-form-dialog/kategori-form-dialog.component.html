@@ -1,17 +1,17 @@
-<h2 mat-dialog-title>{{ data().isView ? 'Detail' : isEdit() ? 'Edit' : 'Tambah' }} Kategori</h2>
+<h2 mat-dialog-title>{{ isView() ? 'Detail' : isEdit() ? 'Edit' : 'Tambah' }} Kategori</h2>
 <mat-dialog-content [formGroup]="form" class="flex flex-col">
     <mat-form-field class="w-full">
         <mat-label>ID</mat-label>
-        <input matInput formControlName="id" [readonly]="isEdit()"/>
+        <input matInput formControlName="id" [readonly]="isView() || isEdit()" />
     </mat-form-field>
     <mat-form-field class="w-full">
         <mat-label>Nama</mat-label>
-        <input matInput formControlName="nama" [readonly]="data().isView" />
+        <input matInput formControlName="nama" [readonly]="isView()" [required]="!isView()" />
     </mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions>
-    <button mat-button [mat-dialog-close]>{{ data().isView ? 'Tutup' : 'Batal' }}</button>
-    @if (!data().isView)
+    <button mat-button [mat-dialog-close]>{{ isView() ? 'Tutup' : 'Batal' }}</button>
+    @if (!isView())
     {
     <button mat-button (click)="submit()">Simpan</button>
     }

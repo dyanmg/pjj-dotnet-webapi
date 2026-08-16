@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Service()
 export class KategoriService {
-    private readonly _baseUrl: string = 'http://localhost:5198/api'
+    private readonly _baseUrl: string = 'http://localhost:8080/api'
     private readonly _httpClient: HttpClient = inject(HttpClient);
     
     public getKategoriList(): Observable<Kategori[]> {

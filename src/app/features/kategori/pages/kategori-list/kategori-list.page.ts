@@ -6,10 +6,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { KategoriFormDialogComponent } from '../../componens/kategori-form-dialog/kategori-form-dialog.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-kategori-list',
-  imports: [MatTableModule, MatButtonModule, MatIconModule],
+  imports: [MatTableModule, MatButtonModule, MatIconModule, MatTooltip],
   templateUrl: './kategori-list.page.html',
   styleUrl: './kategori-list.page.css',
 })
@@ -34,7 +35,8 @@ export class KategoriListPage {
   openFormDialog(item?: Kategori, isView?: boolean): void {
     this._dialog.open(KategoriFormDialogComponent, {
       bindings: [
-        inputBinding('data', () => ({ id: item?.id, nama: item?.nama, isView: isView})),
+        inputBinding('data', () => ({ id: item?.id || '', nama: item?.nama || '' })),
+        inputBinding('isView', () => isView),
         outputBinding('formData', (data: any) => {
           this.handleFormSubmit(data, item?.id != null && item?.id !== '', item?.nama, isView);
         })
@@ -58,7 +60,7 @@ export class KategoriListPage {
           alert(`Kategori ${namaLama} berhasil diperbaharui!`);
           this.loadData();
         });
-    } else {
+    } else if (!isView) {
       this._kategoriService.addKategori(payload)
       .subscribe((result: Kategori) => {
         alert(`Kategori ${result.nama} berhasil ditambahkan!`);

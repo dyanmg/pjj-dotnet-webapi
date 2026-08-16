@@ -12,13 +12,13 @@
     <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Aksi</th>
         <td mat-cell *matCellDef="let item">
-            <button mat-button (click)="openFormDialog(item)">
+            <button matIconButton (click)="openFormDialog(item)" matTooltip="Edit Kategori">
                 <mat-icon>edit</mat-icon>
             </button>
-            <button mat-button (click)="handleDeleteKategori(item)">
+            <button matIconButton (click)="handleDeleteKategori(item)" matTooltip="Hapus Kategori">
                 <mat-icon>delete</mat-icon>
             </button>
-            <button mat-button (click)="openFormDialog(item, true)">
+            <button matIconButton (click)="openFormDialog(item, true)" matTooltip="Lihat Detail">
                 <mat-icon>visibility</mat-icon>
             </button>
         </td>

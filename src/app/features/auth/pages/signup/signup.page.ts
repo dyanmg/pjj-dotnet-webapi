@@ -3,7 +3,8 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { AuthService } from '../../../services/auth.service';
+import { AuthApiService } from '../../auth-api.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -11,14 +12,15 @@ import { AuthService } from '../../../services/auth.service';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
-  ],
+    MatButtonModule,
+    RouterLink
+],
   templateUrl: './signup.page.html',
   styleUrl: './signup.page.css',
 })
 export class SignupPage {
   private readonly _formBuilder: FormBuilder = inject(FormBuilder);
-  private readonly _authService: AuthService = inject(AuthService);
+  private readonly _authService: AuthApiService = inject(AuthApiService);
 
   form = this._formBuilder.group({
     id: [crypto.randomUUID()],

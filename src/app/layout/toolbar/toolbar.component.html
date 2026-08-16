@@ -1,0 +1,8 @@
+<mat-toolbar>
+  <button mat-button routerLink="/kategori">Kategori</button>
+  <button mat-button routerLink="/pegawai">Pegawai</button>
+  <!-- <button mat-button routerLink="/kategori">Aset</button> -->
+  <span class="flex-auto"></span>
+  <button mat-button routerLink="/profile">{{ nama() }}</button>
+  <button mat-button (click)="onLogout()">Logout</button>
+</mat-toolbar>
