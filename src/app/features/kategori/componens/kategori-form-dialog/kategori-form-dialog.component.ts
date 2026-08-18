@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, input, output } from '@angular/core';
+import { Component, computed, effect, inject, input, output, untracked } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogRef, MatDialogContent, MatDialogActions, MatDialogClose, MatDialogModule } from '@angular/material/dialog';
@@ -36,10 +36,12 @@ export class KategoriFormDialogComponent {
 
   constructor() {
     effect(() => {
-      const data = this.data();
-      if (this.data != null) {
-        this.form.patchValue(data);
-      }
+      untracked(() => {
+        const data = this.data();
+        if (this.data != null) {
+          this.form.patchValue(data);
+        }
+      })
     })
   }
 

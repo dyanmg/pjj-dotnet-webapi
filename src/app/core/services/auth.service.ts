@@ -3,11 +3,13 @@ import { CurrentUser, LoginRequest } from '../models/auth.model';
 import { AuthApiService } from './auth-api.service';
 import { TokenStorageService } from './token-storage.service';
 import { catchError, map, of, switchMap } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Service()
 export class AuthService {
     private readonly _authApiService = inject(AuthApiService);
     private readonly _tokenStorageService = inject(TokenStorageService);
+    private readonly _router = inject(Router);
 
     private readonly _currentUser = signal<CurrentUser | null>(null);
 
@@ -49,5 +51,11 @@ export class AuthService {
         }
 
         return of<void>(undefined);
+    }
+
+    logout() {
+        this._tokenStorageService.clearToken();
+        this._currentUser.set(null);
+        this._router.navigateByUrl('/login');
     }
 }
