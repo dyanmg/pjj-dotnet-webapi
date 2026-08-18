@@ -1,4 +1,4 @@
-import { inject, Service, signal } from '@angular/core';
+import { computed, inject, Service, signal } from '@angular/core';
 import { CurrentUser, LoginRequest } from '../models/auth.model';
 import { AuthApiService } from './auth-api.service';
 import { TokenStorageService } from './token-storage.service';
@@ -14,6 +14,7 @@ export class AuthService {
     private readonly _currentUser = signal<CurrentUser | null>(null);
 
     readonly currentUser = this._currentUser.asReadonly();
+    readonly isAuthenticated = computed(() => this._currentUser() != null);
 
     login(request: LoginRequest) {
         return this._authApiService.login(request)

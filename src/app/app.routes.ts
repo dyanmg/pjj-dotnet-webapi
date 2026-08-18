@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { requireAuthGuard } from './core/guards/require-auth-guard';
 
 export const routes: Routes = [
     {
@@ -14,6 +15,7 @@ export const routes: Routes = [
     },
     {
         path: '',
+        canActivate: [requireAuthGuard],
         children: [
             {
                 path: 'kategori',
