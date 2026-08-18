@@ -1,8 +1,8 @@
 import { Component, effect, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { SessionStore } from '@core/services/session.store';
 import { MatFormField, MatLabel } from "@angular/material/form-field";
 import { MatInput } from '@angular/material/input';
+import { AuthService } from '@core/services/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -12,7 +12,7 @@ import { MatInput } from '@angular/material/input';
 })
 export class ProfilePage {
   private readonly _formBuilder: FormBuilder = inject(FormBuilder);
-  private readonly _sessionStore: SessionStore = inject(SessionStore);
+  private readonly _authService: AuthService = inject(AuthService);
 
   form = this._formBuilder.group({
     id: ['-'],
@@ -26,7 +26,7 @@ export class ProfilePage {
 
   constructor() {
     effect(() => {
-      const currentUser = this._sessionStore.currentUser();
+      const currentUser = this._authService.currentUser();
       if (currentUser) {
         this.form.patchValue({
           id: currentUser.id,

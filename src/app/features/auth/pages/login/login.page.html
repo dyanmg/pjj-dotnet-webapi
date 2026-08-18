@@ -1,20 +1,29 @@
-<div class="mx-auto max-w-md py-4">
-    <h1 class="text-2xl font-bold mb-4">PJJ .NET Web API</h1>
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <div>
-            <mat-form-field class="w-full" appearance="outline">
-                <mat-label>NIP</mat-label>
-                <input matInput formControlName="email" />
-            </mat-form-field>
-            <mat-form-field class="w-full" appearance="outline">
-                <mat-label>Password</mat-label>
-                <input matInput formControlName="password" type="password" />
-            </mat-form-field>
-        </div>
-        <div class="flex flex-col gap-2">
-            <button matButton="filled" type="submit">Masuk</button>
-            <div class="text-center">Belum punya akun?</div>
-            <button matButton="tonal" [routerLink]="['/signup']">Daftar</button>
-        </div>
-    </form>
-</div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-col max-w-md mx-auto">
+    <h1 class="text-3xl font-bold py-8 text-center">PJJ .NET Web API</h1>
+    <mat-form-field appearance="outline">
+        <mat-label>NIP</mat-label>
+        <input matInput formControlName="email" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" type="password" />
+    </mat-form-field>
+    @if (errorMessage())
+    {
+    <div class="text-red-500">
+        {{ errorMessage() }}
+    </div>
+    }
+    <div class="flex flex-col gap-2 mt-4">
+        <button matButton="filled" type="submit" [showProgress]="submitting()">
+            Masuk
+            <mat-progress-spinner
+                progressIndicator
+                mode="indeterminate"
+                diameter="20"
+            />
+        </button>
+        <div class="text-center">Belum punya akun?</div>
+        <button matButton="tonal" [routerLink]="['/signup']" type="button">Daftar</button>
+    </div>
+</form>

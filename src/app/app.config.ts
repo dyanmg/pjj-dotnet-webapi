@@ -4,7 +4,8 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { authInterceptor } from '@core/interceptors/auth-interceptor';
-import { AuthService } from './features/auth/auth.service';
+import { AuthService } from './core/services/auth.service';
+import { provideNativeDateAdapter } from '@angular/material/core';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,7 +16,8 @@ export const appConfig: ApplicationConfig = {
     ),
     provideAppInitializer(() => {
       const authService = inject(AuthService);
-      authService.initializeSession();
-    })
+      return authService.initializeSession();
+    }),
+    provideNativeDateAdapter()
   ]
 };

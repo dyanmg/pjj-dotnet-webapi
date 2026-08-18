@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Service } from '@angular/core';
-import { CurrentUser } from '@core/models/session.model';
+import { CurrentUser } from '@core/models/auth.model';
 import { map, Observable } from 'rxjs';
 
 @Service()
 export class AuthApiService {
-    private readonly _baseUrl = 'http://localhost:8080';
+    private readonly _baseUrl = 'http://localhost:5000';
     private readonly _httpClient = inject(HttpClient);
 
     register(data: any): Observable<any> {

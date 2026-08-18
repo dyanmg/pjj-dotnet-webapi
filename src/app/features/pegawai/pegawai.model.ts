@@ -1,7 +1,8 @@
-export interface CurrentUser {
+export interface Pegawai {
     id: string;
     nama: string;
-    email: string;
     nip: string;
     jabatan: string;
+    gaji: number;
+    tanggalMasuk: string;
 }

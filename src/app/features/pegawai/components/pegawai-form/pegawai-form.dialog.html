@@ -1,0 +1,38 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="form" >
+    <h2 mat-dialog-title>{{ 'Tambah' }} Pegawai</h2>
+    <mat-dialog-content class="flex flex-col">
+        <mat-form-field appearance="outline" class="w-full">
+            <mat-label>ID</mat-label>
+            <input matInput formControlName="id" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-full">
+            <mat-label>NIP</mat-label>
+            <input matInput formControlName="nip" [readonly]="isView()" [required]="!isView()" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Nama</mat-label>
+            <input matInput formControlName="nama" [readonly]="isView()" [required]="!isView()" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Jabatan</mat-label>
+            <input matInput formControlName="jabatan" [readonly]="isView()" [required]="!isView()" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Gaji</mat-label>
+            <input matInput formControlName="gaji" [readonly]="isView()" [required]="!isView()" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Tanggal Masuk</mat-label>
+            <input matInput formControlName="tanggalMasuk" [matDatepicker]="picker" [required]="true" />
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button matButton="tonal" [mat-dialog-close] type="button">{{ isView() ? 'Tutup' : 'Batal' }}</button>
+        @if (!isView())
+        {
+        <button matButton="filled" type="submit">Simpan</button>
+        }
+    </mat-dialog-actions>
+</form>

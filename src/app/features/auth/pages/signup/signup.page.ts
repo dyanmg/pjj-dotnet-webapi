@@ -3,8 +3,8 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { AuthApiService } from '../../auth-api.service';
-import { RouterLink } from '@angular/router';
+import { AuthApiService } from '../../../../core/services/auth-api.service';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -21,6 +21,7 @@ import { RouterLink } from '@angular/router';
 export class SignupPage {
   private readonly _formBuilder: FormBuilder = inject(FormBuilder);
   private readonly _authService: AuthApiService = inject(AuthApiService);
+  private readonly _router: Router = inject(Router);
 
   form = this._formBuilder.group({
     id: [crypto.randomUUID()],
@@ -36,6 +37,7 @@ export class SignupPage {
     this._authService.register(this.form.value)
       .subscribe((result: any) => {
         alert('Registrasi berhasil!');
+        this._router.navigateByUrl('/login');
       });
   }
 }

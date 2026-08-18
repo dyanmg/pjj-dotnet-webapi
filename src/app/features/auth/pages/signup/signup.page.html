@@ -1,36 +1,32 @@
-<div class="mx-auto max-w-md">
-    <h1 class="text-2xl font-bold py-4">Daftar</h1>
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <div>
-            <mat-form-field class="w-full" appearance="outline">
-                <mat-label>Nama</mat-label>
-                <input matInput formControlName="nama" />
-            </mat-form-field>
-            <mat-form-field class="w-full" appearance="outline">
-                <mat-label>E-Mail</mat-label>
-                <input matInput formControlName="email" />
-            </mat-form-field>
-            <mat-form-field class="w-full" appearance="outline">
-                <mat-label>NIP</mat-label>
-                <input matInput formControlName="nip" />
-            </mat-form-field>
-            <mat-form-field class="w-full" appearance="outline">
-                <mat-label>Jabatan</mat-label>
-                <input matInput formControlName="jabatan" />
-            </mat-form-field>
-            <mat-form-field class="w-full" appearance="outline">
-                <mat-label>Gaji</mat-label>
-                <input matInput formControlName="gaji" type="number" />
-            </mat-form-field>
-            <mat-form-field class="w-full" appearance="outline">
-                <mat-label>Password</mat-label>
-                <input matInput formControlName="password" type="password" />
-            </mat-form-field>
-        </div>
-        <div class="flex flex-col gap-2">
-            <button matButton="filled" type="submit">Daftar</button>
-            <div class="text-center">Sudah punya akun?</div>
-            <button matButton="tonal" [routerLink]="['/login']">Masuk</button>
-        </div>
-    </form>
-</div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-col max-w-md mx-auto">
+    <h1 class="text-3xl font-bold py-8 text-center">PJJ .NET Web API</h1>
+    <mat-form-field appearance="outline">
+        <mat-label>Nama</mat-label>
+        <input matInput formControlName="nama" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>E-Mail</mat-label>
+        <input matInput formControlName="email" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>NIP</mat-label>
+        <input matInput formControlName="nip" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Jabatan</mat-label>
+        <input matInput formControlName="jabatan" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Gaji</mat-label>
+        <input matInput formControlName="gaji" type="number" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" type="password" />
+    </mat-form-field>
+    <div class="flex flex-col gap-2 mt-4">
+        <button matButton="filled" type="submit">Daftar</button>
+        <div class="text-center">Sudah punya akun?</div>
+        <button matButton="tonal" [routerLink]="['/login']">Masuk</button>
+    </div>
+</form>
