@@ -3,8 +3,8 @@ import { inject, Service } from '@angular/core';
 import { map, Observable } from 'rxjs';
 
 @Service()
-export class AuthService {
-    private readonly _baseUrl = 'http://localhost:5198/api/Account';
+export class AuthApiService {
+    private readonly _baseUrl = 'http://localhost:5000/api/Account';
     private readonly _httpClient = inject(HttpClient);
 
     register(data: any): Observable<any> {
