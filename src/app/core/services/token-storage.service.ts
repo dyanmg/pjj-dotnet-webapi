@@ -18,4 +18,9 @@ export class TokenStorageService {
         this._accessToken.set(token);
         return token;
     }
+
+    public clearToken() {
+        localStorage.removeItem(this.ACCESS_TOKEN_KEY);
+        this._accessToken.set(null);
+    }
 }

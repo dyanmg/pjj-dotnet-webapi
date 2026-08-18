@@ -2,7 +2,7 @@ import { inject, Service, signal } from '@angular/core';
 import { CurrentUser, LoginRequest } from '../models/auth.model';
 import { AuthApiService } from './auth-api.service';
 import { TokenStorageService } from './token-storage.service';
-import { map, switchMap } from 'rxjs';
+import { catchError, map, of, switchMap } from 'rxjs';
 
 @Service()
 export class AuthService {
@@ -25,5 +25,29 @@ export class AuthService {
                     return currentUser;
                 })
             );
+    }
+
+    initializeSession() {
+        const token = this._tokenStorageService.loadToken();
+
+        if (token != null) {
+            return this._authApiService.getInfoPegawai()
+                .pipe(
+                    map((currentUser) => {
+                        this._currentUser.set(currentUser);
+                        return currentUser;
+                    }),
+                    catchError((error) => {
+                        if (error.status === 401) {
+                            this._tokenStorageService.clearToken();
+                            return of<void>(undefined);
+                        }
+
+                        throw error;
+                    })
+                )
+        }
+
+        return of<void>(undefined);
     }
 }
